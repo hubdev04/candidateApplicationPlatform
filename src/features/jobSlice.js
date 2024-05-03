@@ -3,18 +3,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // Asynchronous thunk for fetching jobs
 export const fetchJobs = createAsyncThunk(
     'jobs/fetchJobs',
-    async ({ offset, location, jobRole, minExp, minJdSalary, workType }, { getState }) => {
+    async ({ offset,filters }, { getState }) => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         const body = JSON.stringify({
             "limit": 10,
             "offset": offset,
-            "location": location,
-            "jobRole": jobRole,
-            "minExp": minExp,
-            "minJdSalary": minJdSalary,
-            "workType": workType
+            ...filters
 
         });
 

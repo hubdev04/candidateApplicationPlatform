@@ -1,125 +1,76 @@
-// // Filters.js
-// import React from 'react';
-
-// const Filters = ({filters, setFilters}) => {
-//     const handleFilterChange = (event) => {
-//         const { name, value } = event.target;
-//         setFilters(prevFilters => ({
-//           ...prevFilters,
-//           [name]: value
-//         }));
-//     };
-
-//   return (
-//     <div>
-//       <input
-//         type="text"
-//         name="location"
-//         value={filters.location}
-//         onChange={handleFilterChange}
-//         placeholder="location"
-//       />
-//       {/* Add other filter inputs similarly, make sure each has a corresponding value and onChange */}
-//     </div>
-//   );
-// };
-
-// export default Filters;
 
 
 import React, { useState } from 'react';
-
+import { Box, Container,Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, TextField, MenuItem, Select } from '@mui/material';
+import FilterInput from '../shared/filtersUi/filterInput';
+import FilterSelector from '../shared/filtersUi/filterSelector'
 const Filters = ({ filters, setFilters }) => {
-    // Define available filters here
-    const filterOptions = [
-        { key: 'location', name: 'Location' },
-        { key: 'jobRole', name: 'Job Role' },
-        { key: 'minExp', name: 'Min Experience' },
-        { key: 'minJdSalary', name: 'Min base Pay' },
-        {key:'workType',name:'Work Type'}
-        // Add more filters as needed
-    ];
+  // Define available filters here
+  const filterOptions = [
+     // Predefined filter options for job listings.
+    { key: 'location', name: 'Location' },
+    { key: 'jobRole', name: 'Job Role' },
+    { key: 'minExp', name: 'Min Experience' },
+    { key: 'minJdSalary', name: 'Min base Pay' },
+    { key: 'workType', name: 'Work Type' }
+    // Add more filters as needed
+  ];
 
-    // State to track the currently selected filter
-    const [selectedFilter, setSelectedFilter] = useState('');
+  // State to track the currently selected filter
+  const [selectedFilter, setSelectedFilter] = useState('');
 
-    const handleFilterTypeChange = (event) => {
-        const newFilterType = event.target.value;
-        setSelectedFilter(newFilterType);
+  const handleFilterTypeChange = (event) => {
+    const newFilterType = event.target.value;
+    setSelectedFilter(newFilterType);
 
-        // Reset the corresponding filter value when changing the filter type
-        setFilters({
-            ...filters,
-            [newFilterType]: ''
-        });
-    };
+    // Reset the corresponding filter value when changing the filter type
+    setFilters({
+      ...filters,
+      [newFilterType]: ''// Ensures that when switching filters, the input starts empty.
+    });
+  };
 
-    const handleFilterValueChange = (event) => {
-        // Update the value for the currently selected filter
-       
-        setFilters({
-            ...filters,
-            workType:'',
-            [selectedFilter]: event.target.value
-        });
-    };
+  const handleFilterValueChange = (event) => {
+    // Update the value for the currently selected filter
 
-    const handleWorkTypeChange = (event) => {
-      // Update workType filter directly
-      setFilters({
-        ...filters,
-        [selectedFilter]: event.target.value,
-      });
-    };
+    setFilters({
+      ...filters,
+      workType: '',
+      [selectedFilter]: event.target.value 
+    });
+  };
 
-    return (
-      <div>
-          <div>
-              <label>Filter by: </label>
-              <select onChange={handleFilterTypeChange} value={selectedFilter}>
-                  <option value="">Select a filter</option>
-                  {filterOptions.map(option => (
-                      <option key={option.key} value={option.key}>{option.name}</option>
-                  ))}
-              </select>
-          </div>
-          {selectedFilter==='workType' ? (
-              <div>
-              <label>
-                Work Type:
-                <input
-                  type="radio"
-                  name="workType"
-                  value="remote"
-                  checked={filters.workType === 'remote'}
-                  onChange={handleWorkTypeChange}
-                />
-                Remote
-                <input
-                  type="radio"
-                  name="workType"
-                  value="onsite"
-                  checked={filters.workType === 'onsite'}
-                  onChange={handleWorkTypeChange}
-                />
-                On-site
-              </label>
-            </div>
-          ):(
-            <div>
-                  <input
-                      type="text"
-                      name={selectedFilter}
-                      value={filters[selectedFilter] || ''}
-                      onChange={handleFilterValueChange}
-                      placeholder={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
-                  />
-            </div>
-          )}
-          <div>
+  const handleWorkTypeChange = (event) => {
+    // Update workType filter directly
+    setFilters({
+      ...filters,
+      [selectedFilter]: event.target.value, // Directly updates the workType in the filters state.
+    });
+  };
 
-          </div>
-      </div>
+  return (
+    <Container  display='flex' justifyContent='center' sx={{width:'33%'}}>
+    <Box sx={{  }}>
+      <Box sx={{ mb: 2}}>
+        <FilterSelector selectedFilter={selectedFilter} handleFilterTypeChange={handleFilterTypeChange} filterOptions={filterOptions}/>
+      </Box>
+      {selectedFilter === 'workType' ? (
+        <FilterInput selectedFilter={selectedFilter} filters={filters} handleFilterValueChange={handleFilterTypeChange} handleWorkTypeChange={handleWorkTypeChange} filterOptions={filterOptions}/>
+      ) : (
+        <Box sx={{ mb: 2 }}>
+          <TextField
+            fullWidth
+            type="text"
+            name={selectedFilter}
+            value={filters[selectedFilter] || ''}
+            onChange={handleFilterValueChange}
+            label={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
+            variant="outlined"
+          />
+        </Box>
+      )}
+    </Box>
+    </Container>
   );
 };
 
