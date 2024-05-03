@@ -16,6 +16,9 @@ const JobCard = ({ job }) => {
     // Retrieve company name from fake data using modulus operation to simulate variability.
     const companyName = companyNames[(job.maxJdSalary) % 23].name;
     // Calculate estimated salary range based on available data, providing different formats based on data availability.
+    //basically using some basic techniques so that data can be distributed random and specific for posteddays and company
+
+    // estimated_salary has some values as null . so depending upon data rendering salary 
     const estimated_salary = job.minJdSalary && job.maxJdSalary 
         ? `${job.minJdSalary}k - ${job.maxJdSalary}k ${job.salaryCurrencyCode}`
         : job.minJdSalary 
