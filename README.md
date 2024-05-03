@@ -1,7 +1,14 @@
-# Job Listing Application
+# Candidate Application Platform
 
 ## Introduction
-This React-based web application is designed to help users search and apply for jobs effectively. It utilizes Redux for state management and Material-UI for a polished user interface, providing functionality such as filtering jobs based on various criteria and infinite scrolling for job listings.
+    - This React-based web application is designed to help users specifically Skilled Professionals to  search and apply for jobs effectively. 
+    - It utilizes Redux for state management and Material-UI for a polished user interface
+    - It provides  functionality such as filtering jobs based on various criteria such as 
+                • Role
+                • Experience
+                • Salary
+                • Location
+     and infinite scrolling for job listings.
 
 ## Features
 - **Dynamic Job Search**: Users can search for jobs using filters like location, job role, experience, and more.
