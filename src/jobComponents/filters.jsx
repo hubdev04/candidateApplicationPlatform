@@ -52,16 +52,19 @@ const Filters = ({ filters, setFilters }) => {
     <Container  display='flex' justifyContent='center' sx={{width:'33%'}}>
     <Box sx={{  }}>
       <Box sx={{ mb: 2}}>
+{/*         filter selector contains all  the filter options */}
         <FilterSelector selectedFilter={selectedFilter} handleFilterTypeChange={handleFilterTypeChange} filterOptions={filterOptions}/>
       </Box>
+{/*       for work type we need radio butons so different rendering */}
       {selectedFilter === 'workType' ? (
         <FilterInput selectedFilter={selectedFilter} filters={filters} handleFilterValueChange={handleFilterTypeChange} handleWorkTypeChange={handleWorkTypeChange} filterOptions={filterOptions}/>
       ) : (
+        // adding input textfield where we can input our filtering requirements
         <Box sx={{ mb: 2 }}>
           <TextField
             fullWidth
             type="text"
-            name={selectedFilter}
+            name={selectedFilter} //this is used whenever the value changes to update the jobLists accordingly
             value={filters[selectedFilter] || ''}
             onChange={handleFilterValueChange}
             label={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
