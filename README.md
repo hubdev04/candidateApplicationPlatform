@@ -40,3 +40,5 @@ Below is the project's directory structure:
 - Material Ui : Used for Creating better user-firendly  UI
 - css : Make  the styling of the project well and good.
     
+## How to run the project
+  
