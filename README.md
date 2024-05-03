@@ -65,3 +65,7 @@ Follow these steps to get your development environment running:
    ```bash
      npm start
 This will start the local server, usually on port 3000. Your default web browser should open automatically to http://localhost:3000. If it doesn't, you can manually open a browser and enter this URL.
+## Future work
+1. Advanced Search Capabilities
+- Full-Text Search: Implement a full-text search feature that allows users to search job descriptions and other details, not just titles and locations.
+- Saved Searches: Allow users to save their search criteria for future use, enabling quick access to preferred searches.
