@@ -56,8 +56,10 @@ const Filters = ({ filters, setFilters }) => {
 
     const handleFilterValueChange = (event) => {
         // Update the value for the currently selected filter
+       
         setFilters({
             ...filters,
+            workType:'',
             [selectedFilter]: event.target.value
         });
     };
@@ -66,59 +68,59 @@ const Filters = ({ filters, setFilters }) => {
       // Update workType filter directly
       setFilters({
         ...filters,
-        workType: event.target.value,
+        [selectedFilter]: event.target.value,
       });
     };
 
     return (
-        <div>
-            <div>
-                <label>Filter by: </label>
-                <select onChange={handleFilterTypeChange} value={selectedFilter}>
-                    <option value="">Select a filter</option>
-                    {filterOptions.map(option => (
-                        <option key={option.key} value={option.key}>{option.name}</option>
-                    ))}
-                </select>
-            </div>
-            {selectedFilter==='workType' ? (
-                <div>
-                <label>
-                  Work Type:
-                  <input
-                    type="radio"
-                    name="workType"
-                    value="remote"
-                    checked={filters.workType === 'remote'}
-                    onChange={handleWorkTypeChange}
-                  />
-                  Remote
-                  <input
-                    type="radio"
-                    name="workType"
-                    value="onsite"
-                    checked={filters.workType === 'onsite'}
-                    onChange={handleWorkTypeChange}
-                  />
-                  On-site
-                </label>
-              </div>
-            ):(
+      <div>
+          <div>
+              <label>Filter by: </label>
+              <select onChange={handleFilterTypeChange} value={selectedFilter}>
+                  <option value="">Select a filter</option>
+                  {filterOptions.map(option => (
+                      <option key={option.key} value={option.key}>{option.name}</option>
+                  ))}
+              </select>
+          </div>
+          {selectedFilter==='workType' ? (
               <div>
-                    <input
-                        type="text"
-                        name={selectedFilter}
-                        value={filters[selectedFilter] || ''}
-                        onChange={handleFilterValueChange}
-                        placeholder={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
-                    />
-              </div>
-            )}
-            <div>
-
+              <label>
+                Work Type:
+                <input
+                  type="radio"
+                  name="workType"
+                  value="remote"
+                  checked={filters.workType === 'remote'}
+                  onChange={handleWorkTypeChange}
+                />
+                Remote
+                <input
+                  type="radio"
+                  name="workType"
+                  value="onsite"
+                  checked={filters.workType === 'onsite'}
+                  onChange={handleWorkTypeChange}
+                />
+                On-site
+              </label>
             </div>
-        </div>
-    );
+          ):(
+            <div>
+                  <input
+                      type="text"
+                      name={selectedFilter}
+                      value={filters[selectedFilter] || ''}
+                      onChange={handleFilterValueChange}
+                      placeholder={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
+                  />
+            </div>
+          )}
+          <div>
+
+          </div>
+      </div>
+  );
 };
 
 export default Filters;

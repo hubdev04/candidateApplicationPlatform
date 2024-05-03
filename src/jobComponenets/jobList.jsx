@@ -18,14 +18,6 @@ const JobsList = ({ filters }) => {
       dispatch(setFilteredJobs(filters));
     }, [dispatch, filters]);
 
-    // useEffect(() => {
-    //   // Apply filter whenever it changes
-    //   dispatch(setFilteredJobs(filters.location));
-      
-    // }, [filters.location, dispatch]);
-    // useEffect(()=>{
-    //   dispatch(setRoleFiltered(filters.jobRole));
-    // },[filters.jobRole, dispatch])
 
     const fetchMoreJobs = () => {
       // Fetch more jobs according to current filter and pagination
