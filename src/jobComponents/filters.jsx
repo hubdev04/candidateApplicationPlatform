@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Box, Container,Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, TextField, MenuItem, Select } from '@mui/material';
+import { Box, Container, TextField } from '@mui/material';
 import FilterInput from '../shared/filtersUi/filterInput';
 import FilterSelector from '../shared/filtersUi/filterSelector'
 const Filters = ({ filters, setFilters }) => {

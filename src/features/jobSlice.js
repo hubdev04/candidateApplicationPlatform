@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 // Asynchronous thunk for fetching jobs
 export const fetchJobs = createAsyncThunk(
     'jobs/fetchJobs',
@@ -19,8 +18,8 @@ export const fetchJobs = createAsyncThunk(
             headers: myHeaders,
             body
         };
-
-        const response = await fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions);
+        const apiUrl = process.env.REACT_APP_API_BASE;
+        const response = await fetch(apiUrl, requestOptions);
         const data = await response.json();
         return data.jdList;
     }
