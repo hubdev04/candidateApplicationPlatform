@@ -11,6 +11,7 @@ import Box from "@mui/material/Box"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'; // Import an icon for visual effect
 import { useState } from 'react';
 import HourglassFullTwoToneIcon from '@mui/icons-material/HourglassFullTwoTone';
+import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
 const JobCard = ({ job }) => {
 
     const postedday = job.maxJdSalary % 30;
@@ -19,6 +20,19 @@ const JobCard = ({ job }) => {
     const [expandText, setExpandText] = useState(false); // State to toggle text expansion
     const companyNames = fakedata?.companyNames;
     const companyName=companyNames[(job.maxJdSalary)%23].name
+    var estimated_salary=""
+    if(job.minJdSalary && job.maxJdSalary){
+        estimated_salary=`${job.minJdSalary}k  - ${job.maxJdSalary}k ${job.salaryCurrencyCode}`
+    }
+    else if(job.minJdSalary){
+        estimated_salary=`${job.minJdSalary}k ${job.salaryCurrencyCode} +`
+    }
+    else if(job.maxJdSalary){
+        estimated_salary=`upto ${job.maxJdSalary}k ${job.salaryCurrencyCode}`
+    }
+    else{
+        estimated_salary="As per industry Standards"
+    }
     const toggleText = () => {
         setDetails(details)
         setExpandText(!expandText);
@@ -44,10 +58,12 @@ const JobCard = ({ job }) => {
                     </Typography>
                     <Typography border="1px solid #d7dbd8" marginLeft={1}>{ job.location.charAt(0).toUpperCase() + job.location.slice(1).toLowerCase()}</Typography>
                 </Box>
-
-                <Typography variant="body1" sx={{ marginBottom: 2 }}>
-                    Estimated Salary: {job.minJdSalary || 'N/A'}{job.salaryCurrencyCode} - {job.maxJdSalary || 'N/A'}{job.salaryCurrencyCode}
-                </Typography>
+                <Box display="flex" flexDirection="row"  >
+                    <Typography variant="body1" sx={{ marginBottom: 2 }}border="1px solid #d7dbd8" >
+                        Estimated Salary: {estimated_salary}
+                    </Typography>
+                    <VerifiedOutlinedIcon/>
+                </Box>
                 <Typography variant="body1" sx={{ marginBottom: 1 }}>About Company:</Typography>
                 <div style={{
                     maxHeight: expandText ? 'none' : '4.5em', // Maximum height correlates to about 3 lines of text
