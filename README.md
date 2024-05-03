@@ -1,13 +1,13 @@
 # Candidate Application Platform
 
 ## Introduction
-    - This React-based web application is designed to help users specifically Skilled Professionals to  search and apply for jobs effectively. 
-    - It utilizes Redux for state management and Material-UI for a polished user interface
-    - It provides  functionality such as filtering jobs based on various criteria such as 
-                • Role
-                • Experience
-                • Salary
-                • Location
+- This React-based web application is designed to help users specifically Skilled Professionals to  search and apply for jobs effectively. 
+- It utilizes Redux for state management and Material-UI for a polished user interface
+- It provides  functionality such as filtering jobs based on various criteria such as 
+                 Role,
+                Experience,
+                Salary
+                
      and infinite scrolling for job listings.
 
 ## Features
@@ -33,4 +33,10 @@ Below is the project's directory structure:
         |-- App.js
         |-- index.js
     |-- README.md    # contains details and well documentation for the project abd how to use the project
-    |--requirements.txt   # contains the required dependencies that needs to be installed using npmi
+    |--requirements.txt   # contains the required dependencies that needs to be installed using npm i
+## Tech Stack Used
+- Reactjs : Used as frontend Framework
+- Redux : Used for fetching Api,filtering and managing states
+- Material Ui : Used for Creating better user-firendly  UI
+- css : Make  the styling of the project well and good.
+    
