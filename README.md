@@ -53,5 +53,6 @@ Follow these steps to get your development environment running:
    Clone this repository to your local machine using the following command:
 
    ```bash
-   git clone https://github.com/your-github-username/your-repository-name.git
-   cd your-repository-name
+   git clone https://github.com/hubdev04/candidateApplicationPlatform.git
+
+
