@@ -1,6 +1,6 @@
 import React from 'react';
-import JobsList from './jobComponenets/jobList';
-import Filters from './jobComponenets/filters';
+import JobsList from './jobComponents/jobList';
+import Filters from './jobComponents/filters';
 import { useState } from 'react';
 function App() {
  
