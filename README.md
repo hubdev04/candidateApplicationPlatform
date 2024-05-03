@@ -42,3 +42,16 @@ Below is the project's directory structure:
     
 ## How to run the project
   
+This guide will walk you through setting up this React project on your local machine.
+
+### Installation
+
+Follow these steps to get your development environment running:
+
+1. **Clone the Repository**
+
+   Clone this repository to your local machine using the following command:
+
+   ```bash
+   git clone https://github.com/your-github-username/your-repository-name.git
+   cd your-repository-name
