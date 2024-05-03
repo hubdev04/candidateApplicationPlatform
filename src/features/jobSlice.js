@@ -46,7 +46,7 @@ const jobsSlice = createSlice({
         setFilteredJobs: (state, action) => {
             const { location, jobRole, minExp, minJdSalary, workType } = action.payload;
             state.filter = { location: location.toLowerCase(), jobRole: jobRole.toLowerCase(), minExp: minExp, minJdSalary: minJdSalary, workType: workType }
-            state.visibleJobs = state.allJobs.filter(job => {
+            state.visibleJobs = state.allJobs.filter(job => {// matching all the condtions for rendering
                 const jobLocationMatches = job.location.toLowerCase().includes(state.filter.location);
                 const jobRoleMatches = job.jobRole.toLowerCase().includes(state.filter.jobRole);
                 const minExpMatches = state.filter.minExp ? job.minExp >= state.filter.minExp : true;
@@ -70,7 +70,7 @@ const jobsSlice = createSlice({
             })
             .addCase(fetchJobs.fulfilled, (state, action) => {
                 state.allJobs = [...state.allJobs, ...action.payload];
-                state.visibleJobs = state.allJobs.filter(job => {
+                state.visibleJobs = state.allJobs.filter(job => {// matching all the condtions for rendering
                     const jobLocationMatches = job.location.toLowerCase().includes(state.filter.location);
                     const jobRoleMatches = job.jobRole.toLowerCase().includes(state.filter.jobRole);
                     const minExpMatches = state.filter.minExp ? job.minExp >= state.filter.minExp : true;
