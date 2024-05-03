@@ -34,6 +34,9 @@ const Filters = ({ filters, setFilters }) => {
     const filterOptions = [
         { key: 'location', name: 'Location' },
         { key: 'jobRole', name: 'Job Role' },
+        { key: 'minExp', name: 'Min Experience' },
+        { key: 'minJdSalary', name: 'Min base Pay' },
+        {key:'workType',name:'Work Type'}
         // Add more filters as needed
     ];
 
@@ -59,6 +62,14 @@ const Filters = ({ filters, setFilters }) => {
         });
     };
 
+    const handleWorkTypeChange = (event) => {
+      // Update workType filter directly
+      setFilters({
+        ...filters,
+        workType: event.target.value,
+      });
+    };
+
     return (
         <div>
             <div>
@@ -70,8 +81,30 @@ const Filters = ({ filters, setFilters }) => {
                     ))}
                 </select>
             </div>
-            {selectedFilter && (
+            {selectedFilter==='workType' ? (
                 <div>
+                <label>
+                  Work Type:
+                  <input
+                    type="radio"
+                    name="workType"
+                    value="remote"
+                    checked={filters.workType === 'remote'}
+                    onChange={handleWorkTypeChange}
+                  />
+                  Remote
+                  <input
+                    type="radio"
+                    name="workType"
+                    value="onsite"
+                    checked={filters.workType === 'onsite'}
+                    onChange={handleWorkTypeChange}
+                  />
+                  On-site
+                </label>
+              </div>
+            ):(
+              <div>
                     <input
                         type="text"
                         name={selectedFilter}
@@ -79,8 +112,11 @@ const Filters = ({ filters, setFilters }) => {
                         onChange={handleFilterValueChange}
                         placeholder={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
                     />
-                </div>
+              </div>
             )}
+            <div>
+
+            </div>
         </div>
     );
 };

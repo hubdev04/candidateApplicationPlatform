@@ -4,7 +4,7 @@ import Filters from './jobComponenets/filters';
 import { useState } from 'react';
 function App() {
  
-  const [filters, setFilters] = useState({ location: '' ,jobRole:''});
+  const [filters, setFilters] = useState({ location: '' ,jobRole:'',minExp:'',minJdSalary:'',workType:''});
 
   return (
     <div className="App">

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // Asynchronous thunk for fetching jobs
 export const fetchJobs = createAsyncThunk(
   'jobs/fetchJobs',
-  async ({ offset, location }, { getState }) => {
+  async ({ offset, location,jobRole,minExp,minJdSalary,workType }, { getState }) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -11,7 +11,10 @@ export const fetchJobs = createAsyncThunk(
       "limit": 10,
       "offset": offset,
       "location": location,
-      
+      "jobRole":jobRole,
+      "minExp":minExp,
+      "minJdSalary":minJdSalary,
+      "workType":workType
      
     });
 
@@ -32,7 +35,13 @@ const initialState = {
   visibleJobs: [],
   isLoading: false,
   hasMore: true,
-  currentFilter: '',
+  filter: {
+    location: '',
+    jobRole: '',
+    minExp:null,
+    minJdSalary:null,
+    workType:''
+  }
 };
 
 const jobsSlice = createSlice({
@@ -40,15 +49,18 @@ const jobsSlice = createSlice({
   initialState,
   reducers: {
     setFilteredJobs: (state, action) => {
-      const filterItems=action.payload;
-      const filterText = action.payload.toLowerCase();
-      state.currentFilter = filterText;
-      state.visibleJobs = state.allJobs.filter(job => 
-        (job.location ?? "").toLowerCase().includes(filterText)
-       
-      );
-      
-    },
+        const { location, jobRole,minExp,minJdSalary,workType } = action.payload;
+        state.filter={location:location.toLowerCase(),jobRole :jobRole.toLowerCase(),minExp:minExp,minJdSalary:minJdSalary,workType:workType}
+        state.visibleJobs = state.allJobs.filter(job =>{
+            const jobLocationMatches = job.location.toLowerCase().includes(state.filter.location);
+            const jobRoleMatches = job.jobRole.toLowerCase().includes(state.filter.jobRole);
+            const minExpMatches = state.filter.minExp ? job.minExp >= state.filter.minExp : true;
+            const minSalaryMatches = state.filter.minJdSalary ? job.minJdSalary >= state.filter.minJdSalary : true;
+            const typeofWork=((state.filter.workType==='remote' && job.location==='remote') || state.filter.workType=='on-site')
+            return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches &&typeofWork;
+
+        });
+      },
     
   },
   extraReducers: (builder) => {
@@ -59,8 +71,16 @@ const jobsSlice = createSlice({
       .addCase(fetchJobs.fulfilled, (state, action) => {
         state.allJobs = [...state.allJobs, ...action.payload];
         state.visibleJobs = state.allJobs.filter(job =>
-          (job.location ?? "").toLowerCase().includes(state.currentFilter.toLowerCase())
-          
+            {
+                const jobLocationMatches = job.location.toLowerCase().includes(state.filter.location);
+                const jobRoleMatches = job.jobRole.toLowerCase().includes(state.filter.jobRole);
+                const minExpMatches = state.filter.minExp ? job.minExp >= state.filter.minExp : true;
+                const minSalaryMatches = state.filter.minJdSalary ? job.minJdSalary >= state.filter.minJdSalary : true;
+
+                const typeofWork=((state.filter.workType==='remote' && job.location==='remote') || state.filter.workType=='on-site')
+            return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches &&typeofWork;
+    
+          }
         );
         state.hasMore = action.payload.length > 0;
         state.isLoading = false;

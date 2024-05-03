@@ -13,18 +13,24 @@ const JobsList = ({ filters }) => {
 
     useEffect(() => {
       // Fetch initial data with location filter
-      dispatch(fetchJobs({ offset: 0, location:filters.location}));
-    }, [dispatch, filters.location]);
+      console.log(visibleJobs)
+      dispatch(fetchJobs({ offset: 0, ...filters}));
+      dispatch(setFilteredJobs(filters));
+    }, [dispatch, filters]);
 
-    useEffect(() => {
-      // Apply filter whenever it changes
-      dispatch(setFilteredJobs(filters.location));
-    }, [filters.location, dispatch]);
+    // useEffect(() => {
+    //   // Apply filter whenever it changes
+    //   dispatch(setFilteredJobs(filters.location));
+      
+    // }, [filters.location, dispatch]);
+    // useEffect(()=>{
+    //   dispatch(setRoleFiltered(filters.jobRole));
+    // },[filters.jobRole, dispatch])
 
     const fetchMoreJobs = () => {
       // Fetch more jobs according to current filter and pagination
       if (hasMore && !isLoading) {
-        dispatch(fetchJobs({ offset: visibleJobs.length, location:filters.location}));
+        dispatch(fetchJobs({ offset: visibleJobs.length,...filters}));
       }
     };
 
