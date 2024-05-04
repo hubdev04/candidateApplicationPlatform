@@ -67,7 +67,7 @@ const jobsSlice = createSlice({
                 } else if (state.filter.workType === 'onsite') {
                     workTypeMatches = job.location.toLowerCase() !== 'remote';
                 }
-                return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches && workTypeMatches && nameOfCompanyMatches;
+                return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches && workTypeMatches  && nameOfCompanyMatches;
 
             });
         },

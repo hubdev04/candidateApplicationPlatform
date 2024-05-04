@@ -16,8 +16,9 @@ const JobsList = ({ filters }) => {
 
     // Fetch jobs based on current filters whenever the component mounts or filters change.
     useEffect(() => {
-        console.log(visibleJobs); // Log current visible jobs for debugging.
+        //console.log(visibleJobs); // Log current visible jobs for debugging.
         dispatch(fetchJobs({ offset: 0, ...filters })); // Fetch initial jobs with offset as 0.
+        console.log(visibleJobs);
         dispatch(setFilteredJobs(filters)); // Set filtered jobs based on provided filters.
     }, [dispatch, filters]);
 
@@ -25,6 +26,7 @@ const JobsList = ({ filters }) => {
     const fetchMoreJobs = () => {
         // Check if there are more jobs to load and if not currently loading.
         if (hasMore && !isLoading) {
+            
             dispatch(fetchJobs({ offset: visibleJobs.length, ...filters })); // Fetch additional jobs.
         }
     };
