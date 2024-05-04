@@ -11,6 +11,7 @@ const Filters = ({ filters, setFilters }) => {
     { key: 'location', name: 'Location' },
     { key: 'jobRole', name: 'Job Role' },
     { key: 'minExp', name: 'Min Experience' },
+    {key:'companyName', name:'Company Name'},
     { key: 'minJdSalary', name: 'Min base Pay' },
     { key: 'workType', name: 'Work Type' }
     // Add more filters as needed
@@ -36,7 +37,7 @@ const Filters = ({ filters, setFilters }) => {
     setFilters({
       ...filters,
       workType: '',
-      [selectedFilter]: event.target.value 
+      [selectedFilter]: event.target.value
     });
   };
 
