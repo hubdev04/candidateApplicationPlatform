@@ -66,10 +66,13 @@ const Filters = ({ filters, setFilters }) => {
             fullWidth
             type="text"
             name={selectedFilter} //this is used whenever the value changes to update the jobLists accordingly
-            value={filters[selectedFilter] || ''}
+            value={selectedFilter ? (filters[selectedFilter] || '') : ''}
             onChange={handleFilterValueChange}
-            label={`Enter ${filterOptions.find(opt => opt.key === selectedFilter)?.name}`}
+            label={filterOptions.find(opt => opt.key === selectedFilter)?.name ? 
+              `Enter ${filterOptions.find(opt => opt.key === selectedFilter).name}` : 
+              'Select filter'}
             variant="outlined"
+            disabled={!selectedFilter}
           />
         </Box>
       )}
