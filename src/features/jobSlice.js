@@ -38,7 +38,8 @@ const initialState = {
         jobRole: '',
         minExp: null,
         minJdSalary: null,
-        workType: ''
+        workType: '',
+        companyName:''
     }
 };
 
@@ -49,9 +50,9 @@ const jobsSlice = createSlice({
     reducers: {
         setFilteredJobs: (state, action) => {
             //getting data from filters which is disspatched from jobList.jsx
-            const { location, jobRole, minExp, minJdSalary, workType } = action.payload;
+            const { location, jobRole, minExp, minJdSalary, workType,companyName } = action.payload;
             // getting all the data passed into state for filtering
-            state.filter = { location: location.toLowerCase(), jobRole: jobRole.toLowerCase(), minExp: minExp, minJdSalary: minJdSalary, workType: workType }
+            state.filter = { location: location.toLowerCase(), jobRole: jobRole.toLowerCase(), minExp: minExp, minJdSalary: minJdSalary, workType: workType,companyName: companyName.toLowerCase() }
             state.visibleJobs = state.allJobs.filter(job => {// matching all the condtions for filtering
                 const jobLocationMatches = job.location.toLowerCase().includes(state.filter.location);
                 const jobRoleMatches = job.jobRole.toLowerCase().includes(state.filter.jobRole);
@@ -59,13 +60,14 @@ const jobsSlice = createSlice({
                 const minExpMatches = state.filter.minExp ? job.minExp >= state.filter.minExp : true;
                 //handling the minimumSalary and null case
                 const minSalaryMatches = state.filter.minJdSalary ? job.minJdSalary >= state.filter.minJdSalary : true;
+                const nameOfCompanyMatches =job.companyName.toLowerCase().includes(state.filter.companyName);
                 let workTypeMatches = true; // Assume all jobs match initially
                 if (state.filter.workType === 'remote') {
                     workTypeMatches = job.location.toLowerCase() === 'remote';
                 } else if (state.filter.workType === 'onsite') {
                     workTypeMatches = job.location.toLowerCase() !== 'remote';
                 }
-                return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches && workTypeMatches;
+                return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches && workTypeMatches && nameOfCompanyMatches;
 
             });
         },
@@ -85,14 +87,14 @@ const jobsSlice = createSlice({
                     const jobRoleMatches = job.jobRole.toLowerCase().includes(state.filter.jobRole);
                     const minExpMatches = state.filter.minExp ? job.minExp >= state.filter.minExp : true;
                     const minSalaryMatches = state.filter.minJdSalary ? job.minJdSalary >= state.filter.minJdSalary : true;
-
+                    const nameOfCompanyMatches =job.companyName.toLowerCase().includes(state.filter.companyName);
                     let workTypeMatches = true; // Assume all jobs match initially
                     if (state.filter.workType === 'remote') {
                         workTypeMatches = job.location.toLowerCase() === 'remote';
                     } else if (state.filter.workType === 'onsite') {
                         workTypeMatches = job.location.toLowerCase() !== 'remote';
                     }
-                    return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches && workTypeMatches;
+                    return jobLocationMatches && jobRoleMatches && minExpMatches && minSalaryMatches && workTypeMatches && nameOfCompanyMatches; 
 
                 }
                 );
