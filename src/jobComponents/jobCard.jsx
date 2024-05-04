@@ -24,7 +24,7 @@ const JobCard = ({ job }) => {
         : "As per industry Standards";
     
     return (
-        <Card sx={{ margin: 3, boxShadow: 1, border: "3px solid #d7dbd8", borderRadius: 5 }}>  {/* Styling for the card with shadow, margin, and border. */}
+        <Card sx={{ margin: 3, boxShadow: 2, border: "3px solid #d7dbd8", borderRadius: 5 }}>  {/* Styling for the card with shadow, margin, and border. */}
             <CardContent>
                 {/* Icon and text indicating how many days ago the job was posted. */}
                 <Box sx={{ border: "3px solid #d7dbd8", borderRadius: 4, display: 'flex', flexDirection: 'row', alignItems: 'center', width: '50%', pl: 1 }} md={{ width: '33%' }}>
@@ -32,7 +32,7 @@ const JobCard = ({ job }) => {
                     <Typography sx={{ fontSize: 13 }}>Posted {postedday} days ago</Typography>
                 </Box>
                 {/* Job information component displaying company name, location, and role. */}
-                <JobInfo companyName={job.companyName} location={job.location} jobRole={job.jobRole}/>
+                <JobInfo companyName={job.companyName} location={job.location} jobRole={job.jobRole} imageUrl={job.logoUrl}/>
                 {/* Box for salary information and verified icon. */}
                 <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: 1 }}>
                     <Typography variant="body1" fontWeight={600} color="#5e615f" sx={{ backgroundColor: '#fff', fontSize: '0.8rem' }}>
