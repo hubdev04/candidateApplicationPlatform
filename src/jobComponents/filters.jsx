@@ -36,7 +36,7 @@ const Filters = ({ filters, setFilters }) => {
     setFilters({
       ...filters,
       workType: '',
-      [selectedFilter]: event.target.value 
+      [selectedFilter]: event.target.value
     });
   };
 

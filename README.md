@@ -1,6 +1,7 @@
 # Candidate Application Platform
 
 ## Introduction
+new
 - This React-based web application is designed to help users specifically Skilled Professionals to  search and apply for jobs effectively. 
 - It utilizes Redux for state management and Material-UI for a polished user interface
 - It provides  functionality such as filtering jobs based on various criteria such as 
