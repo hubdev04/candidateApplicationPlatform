@@ -20,7 +20,7 @@ const JobInfo = ({ companyName, jobRole, location, imageUrl }) => {
                 <img src={imageUrl} alt="Company Logo" style={{ width: '100%', height: '100%' ,borderRadius:3}} />
             </Box>
             <Box sx={{ width: '80%',marginLeft:1 }}>
-                <Typography variant="h5" component="div" sx={{ fontSize: '1.4rem', color: "#7f8280", fontWeight: "700" }}>
+                <Typography variant="h5" component="div" sx={{ fontSize: '1.2rem', color: "#7f8280", fontWeight: "700" }}>
                     {companyName}
                 </Typography>
                 {/* Display the job role, ensuring the first letter is capitalized and adding "Developer" if the role isn't "tech lead". */}

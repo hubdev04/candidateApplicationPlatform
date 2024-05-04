@@ -12,7 +12,7 @@ const ReferralButton = () => {
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
             {/* Primary-colored button with custom purple background and rounded corners */}
             <Button variant="contained" color="primary" 
-                style={{ backgroundColor: '#3e13eb', width: '90%', borderRadius: '10px' }}>
+                style={{ backgroundColor: '#3e13eb', width: '100%', borderRadius: '10px' }}>
                 {/* Inline flex container to align icons and text within the button */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {/* Container for AccountCircle icons, emphasizing the referral feature */}
